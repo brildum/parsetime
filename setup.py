@@ -5,7 +5,7 @@ import setuptools
 setuptools.setup(
     name='parsetime',
     description='Parse timestamps from strings',
-    version='0.1',
+    version='0.1.1',
     install_requires=[
         'python-dateutil==2.1',
     ],

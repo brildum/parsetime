@@ -103,3 +103,33 @@ class ParseDT_InvalidTimestampTests(unittest.TestCase):
 
     def test_extra_whitespace(self):
         self.assertRaises(ValueError, parsetime.parse_dt, " 2013-10-10")
+
+class ParseDT_WordTests(unittest.TestCase):
+    NOW = datetime.datetime(2013, 1, 1, 12, 0, 0, 0, None)
+
+    def setUp(self):
+        self._old_now = parsetime._now
+        parsetime._now = mock.Mock(parsetime._now)
+        parsetime._now.return_value = self.NOW
+
+    def tearDown(self):
+        parsetime._now = self._old_now
+
+    def test_today(self):
+        target = datetime.datetime(2013, 1, 1, 0, 0, 0, 0, None)
+        self.assertEqual(parsetime.parse_dt("today"), target)
+
+    def test_tomorrow(self):
+        target = datetime.datetime(2013, 1, 2, 0, 0, 0, 0, None)
+        self.assertEqual(parsetime.parse_dt("tomorrow"), target)
+
+    def test_yesterday(self):
+        target = datetime.datetime(2012, 12, 31, 0, 0, 0, 0, None)
+        self.assertEqual(parsetime.parse_dt("yesterday"), target)
+
+class ParseDT_InvalidWordTests(unittest.TestCase):
+    def test_extra_whitespace(self):
+        self.assertRaises(ValueError, parsetime.parse_dt, " today ")
+
+    def test_lastweek(self):
+        self.assertRaises(ValueError, parsetime.parse_dt, "lastweek")

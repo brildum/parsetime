@@ -8,11 +8,15 @@ def parse_dt(s):
     match = _datetime_re.match(s)
     if match:
         return _parse_datetime(match)
+    match = _word_re.match(s)
+    if match:
+        return _parse_word(s)
     raise ValueError('Invalid time string {}'.format(s))
 
 def parse_ts(s):
     return _timestamp(parse_dt(s))
 
+_word_re = re.compile(r'^\w+$')
 _relative_re = re.compile(r'^(\d+)\s+(\w+)(\s+(\w+))?$')
 _datetime_re = re.compile(r'^(\d{4})-(\d{2})-(\d{2})( (\d{2}):(\d{2}):(\d{2}))?$')
 
@@ -31,6 +35,21 @@ _valid_units = {
     'months': 'months',
     'year': 'years',
     'years': 'years',
+}
+
+def _today():
+    return _beginning_of_day(_now())
+
+def _tomorrow():
+    return _beginning_of_day(_now() + relativedelta.relativedelta(days=1))
+
+def _yesterday():
+    return _beginning_of_day(_now() + relativedelta.relativedelta(days=-1))
+
+_valid_words = {
+    'today': _today,
+    'tomorrow': _tomorrow,
+    'yesterday': _yesterday,
 }
 
 def _parse_relative(match):
@@ -56,6 +75,14 @@ def _parse_datetime(match):
         kwargs['minute'] = int(match.group(6))
         kwargs['second'] = int(match.group(7))
     return datetime.datetime(**kwargs)
+
+def _parse_word(s):
+    if s not in _valid_words:
+        raise ValueError("Invalid timestring {}".format(s))
+    return _valid_words[s]()
+
+def _beginning_of_day(dt):
+    return datetime.datetime(dt.year, dt.month, dt.day, 0, 0, 0, 0, None)
 
 def _timestamp(dt):
     return float(calendar.timegm(dt.timetuple()))
