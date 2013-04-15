@@ -37,6 +37,9 @@ _valid_units = {
     'years': 'years',
 }
 
+def _now():
+    return datetime.datetime.utcnow()
+
 def _today():
     return _beginning_of_day(_now())
 
@@ -47,6 +50,7 @@ def _yesterday():
     return _beginning_of_day(_now() + relativedelta.relativedelta(days=-1))
 
 _valid_words = {
+    'now': _now,
     'today': _today,
     'tomorrow': _tomorrow,
     'yesterday': _yesterday,
@@ -86,6 +90,3 @@ def _beginning_of_day(dt):
 
 def _timestamp(dt):
     return float(calendar.timegm(dt.timetuple()))
-
-def _now():
-    return datetime.datetime.utcnow()

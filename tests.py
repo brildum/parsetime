@@ -111,9 +111,15 @@ class ParseDT_WordTests(unittest.TestCase):
         self._old_now = parsetime._now
         parsetime._now = mock.Mock(parsetime._now)
         parsetime._now.return_value = self.NOW
+        parsetime._valid_words['now'] = parsetime._now
 
     def tearDown(self):
         parsetime._now = self._old_now
+        parsetime._valid_words['now'] = parsetime._now
+
+    def test_now(self):
+        target = self.NOW
+        self.assertEqual(parsetime.parse_dt("now"), target)
 
     def test_today(self):
         target = datetime.datetime(2013, 1, 1, 0, 0, 0, 0, None)

@@ -8,7 +8,7 @@ There are a few classes of strings that parsetime handles, they are:
 
 * Timestamps (``"2010-04-10"`` or ``"2010-04-10 12:30:15"``)
 * Relative dates/times (``"7 days ago"`` or ``"10 minutes ago"``)
-* Specific keywords (``"today"``, ``"tomorrow"``, or ``"yesterday"``)
+* Specific keywords (``"now"``, ``"today"``, ``"tomorrow"``, or ``"yesterday"``)
 
 API
 ---
