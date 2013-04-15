@@ -13,13 +13,13 @@ API
 ---
 
 **parse_dt(s)**
-    :s: ``string`` input
+    **s** ``string`` input
 
     Returns a UTC ``datetime`` representation of the input string.
     If the input string can not be parsed, it raises a ``ValueError``.
 
 **parse_ts(s)**
-    :s: ``string`` input
+    **s** ``string`` input
 
     Returns a UTC ``float`` timestamp representaion of the input string.
     If the input string can not be parsed, it raises a ``ValueError``.
@@ -31,5 +31,7 @@ Examples
     >>> import parsetime
     >>> parsetime.parse_dt("7 days ago")
     datetime.datetime(2013, 4, 8, 0, 56, 25, 886358)
-    >>> parsetime.parse_dt("3 hours ago")
+    >>> parsetime.parse_dt("2013-04-08 00:56::25")
+    datetime.datetime(2013, 4, 8, 0, 56, 25, 0)
+    >>> parsetime.parse_ts("3 hours ago")
     1365976689.0
