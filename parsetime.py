@@ -89,4 +89,4 @@ def _beginning_of_day(dt):
     return datetime.datetime(dt.year, dt.month, dt.day, 0, 0, 0, 0, None)
 
 def _timestamp(dt):
-    return float(calendar.timegm(dt.timetuple()))
+    return int(calendar.timegm(dt.timetuple()))

@@ -22,7 +22,7 @@ API
 **parse_ts(s)**
     **s** ``string`` input
 
-    Returns a UTC ``float`` timestamp representaion of the input string.
+    Returns a UTC ``int`` timestamp representaion of the input string.
     If the input string can not be parsed, it raises a ``ValueError``.
 
 Examples
@@ -35,4 +35,4 @@ Examples
     >>> parsetime.parse_dt("2013-04-08 00:56::25")
     datetime.datetime(2013, 4, 8, 0, 56, 25, 0)
     >>> parsetime.parse_ts("3 hours ago")
-    1365976689.0
+    1365976689
