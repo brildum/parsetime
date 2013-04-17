@@ -13,7 +13,7 @@ There are a few classes of strings that parsetime handles, they are:
 API
 ---
 
-**parse_dt(value[, *tzinfo=None*])**
+**parse_dt(value[, tzinfo=None])**
     **value** ``string``
     **tzinfo** ``tzinfo``
 
@@ -21,7 +21,7 @@ API
     that of the ``tzinfo`` parameter. If ``tzinfo`` is ``None``, UTC is assumed.
     If the input can not be parsed, raises ``ValueError``.
 
-**parse_ts(value[, *tzinfo=None*])**
+**parse_ts(value[, tzinfo=None])**
     **value** ``string``
     **tzinfo** ``tzinfo``
 
