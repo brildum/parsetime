@@ -14,16 +14,16 @@ API
 ---
 
 **parse_dt(value[, tzinfo=None])**
-    **value** ``string``
-    **tzinfo** ``tzinfo``
+    - **value** ``string``
+    - **tzinfo** ``tzinfo``
 
     Returns ``datetime`` representation of the input value with ``tzinfo`` matching
     that of the ``tzinfo`` parameter. If ``tzinfo`` is ``None``, UTC is assumed.
     If the input can not be parsed, raises ``ValueError``.
 
 **parse_ts(value[, tzinfo=None])**
-    **value** ``string``
-    **tzinfo** ``tzinfo``
+    - **value** ``string``
+    - **tzinfo** ``tzinfo``
 
     Returns a UTC ``int`` timestamp representation of the input value according
     to the ``tzinfo`` parameter specified. If ``tzinfo`` is ``None``, UTC is assumed.
