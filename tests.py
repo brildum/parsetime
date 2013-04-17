@@ -84,11 +84,11 @@ class ParseDT_InvalidRelativeTests(unittest.TestCase):
 
 class ParseDT_TimestampTests(unittest.TestCase):
     def test_2013_10_10(self):
-        target = datetime.datetime(2013, 10, 10, tzinfo=None)
+        target = datetime.datetime(2013, 10, 10, tzinfo=parsetime._utc)
         self.assertEqual(parsetime.parse_dt("2013-10-10"), target)
 
     def test_2013_10_10_203015(self):
-        target = datetime.datetime(2013, 10, 10, 20, 30, 15, tzinfo=None)
+        target = datetime.datetime(2013, 10, 10, 20, 30, 15, tzinfo=parsetime._utc)
         self.assertEqual(parsetime.parse_dt("2013-10-10 20:30:15"), target)
 
 class ParseDT_InvalidTimestampTests(unittest.TestCase):
@@ -139,3 +139,22 @@ class ParseDT_InvalidWordTests(unittest.TestCase):
 
     def test_lastweek(self):
         self.assertRaises(ValueError, parsetime.parse_dt, "lastweek")
+
+class TestTimezone(datetime.tzinfo):
+    def utcoffset(self, dt):
+        return datetime.timedelta(hours=1)
+    def dst(self, dt):
+        return datetime.timedelta(0)
+
+class ParseDT_TZInfo(unittest.TestCase):
+    def test_relative_tzinfo(self):
+        target = TestTimezone()
+        self.assertEqual(parsetime.parse_dt("7 days ago", target).tzinfo, target)
+
+    def test_timestamp_tzinfo(self):
+        target = TestTimezone()
+        self.assertEqual(parsetime.parse_dt("2013-02-14", target).tzinfo, target)
+
+    def test_word_tzinfo(self):
+        target = TestTimezone()
+        self.assertEqual(parsetime.parse_dt("tomorrow", target).tzinfo, target)

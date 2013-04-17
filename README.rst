@@ -13,17 +13,21 @@ There are a few classes of strings that parsetime handles, they are:
 API
 ---
 
-**parse_dt(s)**
-    **s** ``string`` input
+**parse_dt(value[, *tzinfo=None*])**
+    **value** ``string``
+    **tzinfo** ``tzinfo``
 
-    Returns a UTC ``datetime`` representation of the input string.
-    If the input string can not be parsed, it raises a ``ValueError``.
+    Returns ``datetime`` representation of the input value with ``tzinfo`` matching
+    that of the ``tzinfo`` parameter. If ``tzinfo`` is ``None``, UTC is assumed.
+    If the input can not be parsed, raises ``ValueError``.
 
-**parse_ts(s)**
-    **s** ``string`` input
+**parse_ts(value[, *tzinfo=None*])**
+    **value** ``string``
+    **tzinfo** ``tzinfo``
 
-    Returns a UTC ``int`` timestamp representaion of the input string.
-    If the input string can not be parsed, it raises a ``ValueError``.
+    Returns a UTC ``int`` timestamp representation of the input value according
+    to the ``tzinfo`` parameter specified. If ``tzinfo`` is ``None``, UTC is assumed.
+    If the input can not be parsed, raises ``ValueError``.
 
 Examples
 --------
