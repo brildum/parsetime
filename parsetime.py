@@ -58,7 +58,7 @@ def _tomorrow(tzinfo):
     return _beginning_of_day(_now(tzinfo) + relativedelta.relativedelta(days=1))
 
 def _yesterday(tzinfo):
-    return _beginning_of_day(_now() + relativedelta.relativedelta(days=-1))
+    return _beginning_of_day(_now(tzinfo) + relativedelta.relativedelta(days=-1))
 
 _valid_words = {
     'now': _now,

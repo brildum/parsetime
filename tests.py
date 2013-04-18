@@ -155,6 +155,18 @@ class ParseDT_TZInfo(unittest.TestCase):
         target = TestTimezone()
         self.assertEqual(parsetime.parse_dt("2013-02-14", target).tzinfo, target)
 
-    def test_word_tzinfo(self):
+    def test_tomorrow_tzinfo(self):
         target = TestTimezone()
         self.assertEqual(parsetime.parse_dt("tomorrow", target).tzinfo, target)
+
+    def test_yesterday_tzinfo(self):
+        target = TestTimezone()
+        self.assertEqual(parsetime.parse_dt("yesterday", target).tzinfo, target)
+
+    def test_now_tzinfo(self):
+        target = TestTimezone()
+        self.assertEqual(parsetime.parse_dt("now", target).tzinfo, target)
+
+    def test_today_tzinfo(self):
+        target = TestTimezone()
+        self.assertEqual(parsetime.parse_dt("today", target).tzinfo, target)
