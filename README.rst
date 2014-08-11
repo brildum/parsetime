@@ -40,3 +40,9 @@ Examples
     datetime.datetime(2013, 4, 8, 0, 56, 25, 0)
     >>> parsetime.parse_ts("3 hours ago")
     1365976689
+
+
+License
+--------
+
+Parsetime is covered by the MIT license, http://opensource.org/licenses/MIT 
